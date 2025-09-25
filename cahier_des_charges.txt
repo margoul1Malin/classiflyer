@@ -1,0 +1,85 @@
+1. Contexte & Objectifs
+   - Logiciel de bureau multiplateforme (Windows & Linux).
+   - Import, organisation, modification et consultation de documents/images.
+   - Interface inspirée des gestionnaires de mails (classeur, dossiers, corbeille, recherche, archivage).
+   - Système de classement personnalisable avec options claires de suppression et modification.
+
+2. Périmètre Fonctionnel
+   2.1 Première Configuration
+       - Au premier lancement, définir un chemin local (dossier racine). (Différent pour Windows & Linux ducoup)
+       - Chemin modifiable ultérieurement via les paramètres.
+
+   2.2 Page d’accueil / Tableau de bord
+       - Liste de tous les classeurs existants.
+       - Barre de recherche pour filtrer par nom.
+       - Bouton "Créer un classeur" (vierge ou upload dossier).
+       - Sidebar gauche avec :
+         - Tous les classeurs
+         - Possibilité de créer des onglets de rangement pour archiver & classer les classeurs dans divers dossier
+         - Corbeille
+         - Paramètres
+
+   2.3 Gestion des Classeurs
+       - Classeur vierge :
+         - Nom personnalisé
+         - 2 couleurs attribuées
+         - Création manuelle de dossiers
+         - Import de fichiers (drag & drop ou bouton importer)
+       - Classeur via upload d’un dossier existant :
+         - Sélection d’un dossier parent
+         - Reprise récursive de la structure (sous-dossiers)
+         - Import automatique des fichiers
+         - Configuration nom et couleurs
+
+   2.4 Types de fichiers supportés
+       - Images : png, jpg, jpeg, avif, webp
+       - Documents : pdf, docx, xlsx
+
+   2.5 Consultation des fichiers
+       - Visionneuse intégrée avec :
+         - Navigation flèches (précédent/suivant)
+         - Pagination
+         - Breadcrumb hiérarchique (chaque lien du breadcrumb doit être cliquable et renvoyer vers sa page)
+       - Double clic sur document = ouverture dans app système (optionnelle)
+
+   2.6 Organisation & Classement
+       - Sidebar avec dossiers hiérarchiques.
+       - Déplacement d’éléments (fichiers/dossiers).
+       - Corbeille avec possibilité de restauration et de suppression définitive.
+
+   2.7 Modification & Suppression
+       - Chaque classeur / dossier / fichier :
+         - Suppression (icône poubelle rouge au hover, confirmation).
+         - Modification (renommer, changer couleurs, déplacer via drag&drop).
+         - Suppression définitive dans l’app = suppression réelle dans le dossier mère.
+       - Corbeille pour restaurer en cas d’erreur.
+
+   2.8 Paramètres
+       - Modifier le dossier racine.
+       - Gérer les couleurs/styles des classeurs. (ca c'est pour l'icone parametre qui apparaitra au hover sur chaque classeur)
+       - Préférences d’affichage (liste/grille).
+
+3. Contraintes Techniques
+   - Technologie principale : Electron
+   - Frontend : React / Vue ou Next / Svelte / TailwindCSS si possible sur ce genre de ogiciels
+   - Bundler : Vite avec TypeScript
+   - Gestion des fichiers :
+     - Stockage local dans le dossier défini
+     - Indexation pour recherche
+     - Suppression/modification répercutées dans le système
+   - Compatibilité : Windows 10/11 et Linux (Ubuntu, Debian, Fedora…)
+   - Base de données locale pour sauvegarder et mettre a jour les path, couleurs classeurs, noms, etc..: SQLite
+
+4. Design & UX
+   - Interface inspirée des gestionnaires de mails :
+     - Sidebar gauche
+     - Contenu central
+     - Barre de recherche
+   - Classeurs représentés par cartes colorées.
+   - Visionneuse fluide avec breadcrumbs.
+   - Icônes d’action (modifier/supprimer) visibles au hover.
+
+5. Sécurité
+   - Stockage exclusivement local.
+   - Suppression définitive = suppression disque (après confirmation).
+   - Accès limité au chemin configuré.
