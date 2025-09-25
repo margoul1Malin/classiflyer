@@ -63,8 +63,8 @@ const createWindow = () => {
   if (process.env.NODE_ENV === 'development') {
     mainWindow.loadURL('http://localhost:5173');
   } else {
-    // En mode production, charger le fichier HTML depuis l'ASAR
-    mainWindow.loadFile(path.join(__dirname, '../.vite/renderer/main_window/index.html'));
+    // En mode production, charger depuis le fichier HTML principal
+    mainWindow.loadFile(path.join(__dirname, '../index.html'));
   }
 
   // Open the DevTools only in development mode.
